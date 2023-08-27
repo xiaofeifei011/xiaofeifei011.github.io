@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>大学生的时代</title>
+      <link href="/2023/08/16/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/"/>
+      <url>/2023/08/16/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 大学生涯 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术栈 </tag>
+            
+            <tag> life </tag>
+            
+            <tag> 校园 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>前端新型技术之react———hooks</title>
+      <link href="/2023/08/15/%E5%89%8D%E7%AB%AF%E5%8D%9A%E6%96%87/"/>
+      <url>/2023/08/15/%E5%89%8D%E7%AB%AF%E5%8D%9A%E6%96%87/</url>
+      
+        <content type="html"><![CDATA[<h4 id="前端概括"><a href="#前端概括" class="headerlink" title="前端概括"></a>前端概括</h4><p><img src="D:\Notes\htmlcss_pic\image-20221227132122324.png" alt="image-20221227132122324"></p><p><img src="D:\Notes\htmlcss_pic\image-20221227151052571.png" alt="image-20221227151052571"></p><p><img src="D:\Notes\htmlcss_pic\image-20221227220259323.png" alt="image-20221227220259323"></p><p><img src="D:\Notes\htmlcss_pic\image-20221227221854628.png" alt="image-20221227221854628"></p><p><img src="D:\Notes\htmlcss_pic\image-20221227222340250.png" alt="image-20221227222340250"></p><h4 id="vscode配置简要"><a href="#vscode配置简要" class="headerlink" title="vscode配置简要"></a>vscode配置简要</h4><p><img src="D:\Notes\htmlcss_pic\image-20221228105045061.png" alt="image-20221228105045061"></p><h4 id="用iframe元素可以实现：在一个HTML文档中嵌入其他HTML文档，X-Frame-Options-sameorigin可以阻止网页被-嵌套iframe"><a href="#用iframe元素可以实现：在一个HTML文档中嵌入其他HTML文档，X-Frame-Options-sameorigin可以阻止网页被-嵌套iframe" class="headerlink" title="用iframe元素可以实现：在一个HTML文档中嵌入其他HTML文档，X-Frame-Options:sameorigin可以阻止网页被 嵌套iframe"></a>用iframe元素可以实现：在一个HTML文档中嵌入其他HTML文档，X-Frame-Options:sameorigin可以阻止网页被 嵌套iframe</h4><p><img src="D:\Notes\htmlcss_pic\image-20221228225016301.png" alt="image-20221228225016301"></p><p><img src="D:\Notes\htmlcss_pic\image-20221228231819825.png" alt="image-20221228231819825"></p><h4 id="iframe实现后端框架模板"><a href="#iframe实现后端框架模板" class="headerlink" title="iframe实现后端框架模板"></a>iframe实现后端框架模板</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\\ target = iframe.name.value</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;./index.html&quot;</span> <span class="attr">target</span>=<span class="string">&quot;test&quot;</span>&gt;</span>scascas<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;./index2 copy.html&quot;</span> <span class="attr">target</span>=<span class="string">&quot;test&quot;</span>&gt;</span>asassdascascas<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;./index.html&quot;</span> <span class="attr">name</span>=<span class="string">&quot;test&quot;</span> <span class="attr">scrolling</span>=<span class="string">&quot;no&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="锚点链接实楼层目录"><a href="#锚点链接实楼层目录" class="headerlink" title="锚点链接实楼层目录"></a>锚点链接实楼层目录</h4><p><img src="D:\Notes\htmlcss_pic\image-20221228222845669.png" alt="image-20221228222845669"></p><p><img src="D:\Notes\htmlcss_pic\image-20221228224127942.png" alt="image-20221228224127942"></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\\ 通过锚点，href为id</span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#one&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#two&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#there&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#four&quot;</span>&gt;</span>4<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;one&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="HTML全局属性"><a href="#HTML全局属性" class="headerlink" title="HTML全局属性"></a>HTML全局属性</h4><p><img src="D:\Notes\htmlcss_pic\image-20221228233721858.png" alt="image-20221228233721858"></p><h4 id="URL和URI的区别"><a href="#URL和URI的区别" class="headerlink" title="URL和URI的区别"></a>URL和URI的区别</h4><p><img src="D:\Notes\htmlcss_pic\image-20221229115725262.png" alt="image-20221229115725262"></p><p><img src="D:\Notes\htmlcss_pic\image-20221229115644021.png" alt="image-20221229115644021"></p><h4 id="css2-以后没有css3了-因为新特性的按照模块发布了-font模块-back模块-height模块"><a href="#css2-以后没有css3了-因为新特性的按照模块发布了-font模块-back模块-height模块" class="headerlink" title="css2  以后没有css3了,因为新特性的按照模块发布了,font模块,back模块,height模块"></a>css2  以后没有css3了,因为新特性的按照模块发布了,font模块,back模块,height模块</h4><p><img src="D:\Notes\htmlcss_pic\image-20221229200555120.png" alt="image-20221229200555120"></p><p><img src="D:\Notes\htmlcss_pic\image-20221229200806168.png" alt="image-20221229200806168"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230000903181.png" alt="image-20221230000903181"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230001034271.png" alt="image-20221230001034271"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230003029098.png" alt="image-20221230003029098"></p><h4 id="css现实文本的垂直排列的方法"><a href="#css现实文本的垂直排列的方法" class="headerlink" title="css现实文本的垂直排列的方法"></a>css现实文本的垂直排列的方法</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// css现实文本的垂直排列的方法：</span><br><span class="line"><span class="attribute">writing-mode</span>: vertical-rl;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h4 id="中线border实现方式小技巧"><a href="#中线border实现方式小技巧" class="headerlink" title="中线border实现方式小技巧"></a>中线border实现方式小技巧</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">中线</span><br><span class="line">    div &#123;</span><br><span class="line">      text-decoration: line-through;</span><br><span class="line">      width: 200px;</span><br><span class="line"> color: red;</span><br><span class="line">      text-decoration-line: overline;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span> <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span></span><br><span class="line">    <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><h4 id="font属性大全"><a href="#font属性大全" class="headerlink" title="font属性大全"></a>font属性大全</h4><p><img src="D:\Notes\htmlcss_pic\image-20221230004624317.png" alt="image-20221230004624317"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230005115418.png" alt="image-20221230005115418"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230005916738.png" alt="image-20221230005916738"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230005905408.png" alt="image-20221230005905408"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230005953192.png" alt="image-20221230005953192"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230010219441.png" alt="image-20221230010219441"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230012031473.png" alt="image-20221230012031473"></p><h4 id="css伪类大全特别多！！"><a href="#css伪类大全特别多！！" class="headerlink" title="css伪类大全特别多！！"></a>css伪类大全特别多！！</h4><p><img src="D:\Notes\htmlcss_pic\image-20221230014853026.png" alt="image-20221230014853026"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230015006853.png" alt="image-20221230015006853"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230015239452.png" alt="image-20221230015239452"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230015324021.png" alt="image-20221230015324021"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230020618944.png" alt="image-20221230020618944"></p><h4 id="元素隐藏的方法"><a href="#元素隐藏的方法" class="headerlink" title="元素隐藏的方法"></a>元素隐藏的方法</h4><p><img src="D:\Notes\htmlcss_pic\image-20221230021631960.png" alt="image-20221230021631960"></p><h4 id="上下margin的传递"><a href="#上下margin的传递" class="headerlink" title="上下margin的传递"></a>上下margin的传递</h4><p><img src="D:\Notes\htmlcss_pic\image-20221230023702139.png" alt="image-20221230023702139"></p><h4 id="上下margin的折叠"><a href="#上下margin的折叠" class="headerlink" title="上下margin的折叠"></a>上下margin的折叠</h4><p><img src="D:\Notes\htmlcss_pic\image-20221230024122181.png" alt="image-20221230024122181"></p><h4 id="在线盒子调试阴影网站"><a href="#在线盒子调试阴影网站" class="headerlink" title="在线盒子调试阴影网站"></a>在线盒子调试阴影网站</h4><p><a href="https://html-css-js.com/css/generator/box-shadow/">https://html-css-js.com/css/generator/box-shadow/</a></p><h4 id="在线文字调试阴影网站"><a href="#在线文字调试阴影网站" class="headerlink" title="在线文字调试阴影网站"></a>在线文字调试阴影网站</h4><p><a href="https://html-css-js.com/css/generator/box-shadow/">https://html-css-js.com/css/generator/box-shadow/</a></p><p><img src="D:\Notes\htmlcss_pic\image-20221230030436765.png" alt="image-20221230030436765"></p><h4 id="多行省略…"><a href="#多行省略…" class="headerlink" title="多行省略…"></a>多行省略…</h4><p><img src="D:\Notes\htmlcss_pic\image-20221230031357194.png" alt="image-20221230031357194"></p><h4 id="网路请求图片不到加这个属性"><a href="#网路请求图片不到加这个属性" class="headerlink" title="网路请求图片不到加这个属性"></a>网路请求图片不到加这个属性</h4><p><img src="D:\Notes\htmlcss_pic\image-20221230031448944.png" alt="image-20221230031448944"></p><h4 id="background-attachment决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动。"><a href="#background-attachment决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动。" class="headerlink" title="background-attachment决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动。"></a>background-attachment决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动。</h4><p><img src="D:\Notes\htmlcss_pic\image-20221230032533075.png" alt="image-20221230032533075"></p><h4 id="form表单大全原素item"><a href="#form表单大全原素item" class="headerlink" title="form表单大全原素item"></a>form表单大全原素item</h4><p><img src="D:\Notes\htmlcss_pic\image-20221230132546334.png" alt="image-20221230132546334"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230132901152.png" alt="image-20221230132901152"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230140915567.png" alt="image-20221230140915567"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230141516676.png" alt="image-20221230141516676"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230155302708.png" alt="image-20221230155302708"></p><h4 id="CSS-Emmet"><a href="#CSS-Emmet" class="headerlink" title="CSS Emmet"></a>CSS Emmet</h4><p><img src="D:\Notes\htmlcss_pic\image-20221230161132862.png" alt="image-20221230161132862"></p><h4 id="结构伪类选择器大全很多！！！"><a href="#结构伪类选择器大全很多！！！" class="headerlink" title="结构伪类选择器大全很多！！！"></a>结构伪类选择器大全很多！！！</h4><p>nth-of-type   nth-of-last-type</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nth-chlid(-n+<span class="number">5</span>)选中前<span class="number">5</span>个</span><br><span class="line">nth-chlid(<span class="number">2</span>n+<span class="number">1</span>)奇数</span><br><span class="line">nth-chlid(<span class="number">2</span>n)偶数</span><br><span class="line">案例表格隔行变色</span><br></pre></td></tr></table></figure><p><img src="D:\Notes\htmlcss_pic\image-20221230212356567.png" alt="image-20221230212356567"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230212752360.png" alt="image-20221230212752360"></p><p><img src="D:\Notes\htmlcss_pic\image-20221230213021581.png" alt="image-20221230213021581"></p><h4 id="border画图形https-css-tricks-com-guides-网站"><a href="#border画图形https-css-tricks-com-guides-网站" class="headerlink" title="border画图形https://css-tricks.com/guides/网站"></a>border画图形<a href="https://css-tricks.com/guides/%E7%BD%91%E7%AB%99">https://css-tricks.com/guides/网站</a></h4><p><a href="https://css-tricks.com/the-shapes-of-css/#top-of-site">https://css-tricks.com/the-shapes-of-css/#top-of-site</a></p><h4 id="字体引入使用详解"><a href="#字体引入使用详解" class="headerlink" title="字体引入使用详解"></a>字体引入使用详解</h4><p><img src="D:\Notes\htmlcss_pic\image-20221230215920812.png" alt="image-20221230215920812"></p><h4 id="字体图标使用详解"><a href="#字体图标使用详解" class="headerlink" title="字体图标使用详解"></a>字体图标使用详解</h4>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术栈 </tag>
+            
+            <tag> 前端技术 </tag>
+            
+            <tag> 前端开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>四川美食记录</title>
+      <link href="/2023/08/15/%E5%B7%9D%E8%9C%80%E7%BE%8E%E9%A3%9F/"/>
+      <url>/2023/08/15/%E5%B7%9D%E8%9C%80%E7%BE%8E%E9%A3%9F/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活日常 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 美食日记 </tag>
+            
+            <tag> 川蜀风情 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
