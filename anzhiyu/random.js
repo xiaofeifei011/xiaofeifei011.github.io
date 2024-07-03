@@ -1,1 +1,0 @@
-var posts=["2023/08/15/前端博文/","2023/08/16/大学生活/","2023/08/15/川蜀美食/"];function toRandomPost(){pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);};
