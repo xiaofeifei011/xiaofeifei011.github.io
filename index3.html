@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>页面3</title>
+</head>
+
+<body>
+  <table width="1131" height="80" border="1" align="center">
+    <tbody>
+      <tr>
+        <td bgcolor="#009690"><img src="logo.png" width="254" height="91" alt="" /></td>
+      </tr>
+    </tbody>
+  </table>
+  <table width="1131" height="50" border="1" align="center">
+    <tbody>
+      <tr>
+        <td bgcolor="#009690" style="text-align: center; font-weight: 400; font-size: 36px; color: #FFFFFF;">考生排名情况查看
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table width="1131" height="501" border="1" align="center">
+    <tbody>
+      <tr>
+        <td width="271" bgcolor="#009690">&nbsp;</td>
+        <td width="678">
+          <table width="705" height="507" border="1">
+            <tbody class="myinfo">
+              <tr>
+                <td align="center" style="font-weight: 400"><span style="font-size: 14px"><strong>姓名</strong></span>
+                </td>
+                <td align="center" style="font-weight: 400"><span style="font-size: 14px"><strong>成绩</strong></span>
+                </td>
+                <td align="center" style="font-weight: 400"><span style="font-size: 14px"><strong>排名</strong></span>
+                </td>
+              </tr>
+
+
+
+
+
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $.ajax({
+      type: "get",
+      url: "http://39.106.85.170:8080/user/user/list",
+      success: function (response) {
+        var res = response
+        // 根据 fen 降序
+        res.sort(function (a, b) {
+          return b.fen - a.fen
+        })
+        for (let i = 0; i < res.length; i++) {
+          $(".myinfo").append(`
+             <tr>
+                <td align="center" style="font-weight: 400">${res[i].name}</td>
+                <td align="center" style="font-weight: 400">${res[i].fen}</td>
+                <td align="center" style="font-weight: 400"><span style="font-size: 14px"><strong>${i + 1}</strong></span></td>
+              </tr>
+          `)
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>
