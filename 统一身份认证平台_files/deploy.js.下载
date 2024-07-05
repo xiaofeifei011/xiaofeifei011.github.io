@@ -1,0 +1,395 @@
+vpn_eval((function(){
+function IEVersion() {
+  var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串  
+  var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器  
+  var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器  
+  var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+  if(isIE) {
+      var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+      reIE.test(userAgent);
+      var fIEVersion = parseFloat(RegExp["$1"]);
+      if(fIEVersion == 7) {
+          return 7;
+      } else if(fIEVersion == 8) {
+          return 8;
+      } else if(fIEVersion == 9) {
+          return 9;
+      } else if(fIEVersion == 10) {
+          return 10;
+      } else {
+          return 6;//IE版本<=7
+      }   
+  } else if(isEdge) {
+      return 'edge';//edge
+  } else if(isIE11) {
+      return 11; //IE11  
+  }else{
+      return -1;//不是ie浏览器
+  }
+}
+
+(function () {
+
+  // 获取浏览器信息
+  function getBrowserInfo() {
+    var params = {
+      type: '', // 浏览器类型
+      version: '', // 版本号
+      isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent), // 是否为手机平台
+    }
+    var userAgent = navigator.userAgent.toLocaleLowerCase(); //取得浏览器的userAgent字符串
+    var isWeixin = userAgent.indexOf("weixin") > -1; // 是否是微信内置浏览器
+    var isBaidu = userAgent.indexOf("bidubrowser") > -1 || userAgent.indexOf("baiduboxapp") > -1; // 判断百度浏览器
+    var isEdg = userAgent.indexOf('edg') > -1; // 判断edg浏览器
+    var isQQBrowser = (userAgent.indexOf("qqbrowser") > -1 || userAgent.indexOf("mqqbrowser") > -1) && userAgent.indexOf("weixin") == -1; // qq浏览器
+    var isOpera = userAgent.indexOf("opera") > -1 || userAgent.indexOf("opr") > -1; //判断是否Opera浏览器
+    var isIE = (userAgent.indexOf("compatible") > -1
+      && userAgent.indexOf("msie") > -1 && !isOpera) || (!!window.ActiveXObject || "ActiveXObject" in window); //判断是否IE浏览器
+    var isFF = userAgent.indexOf("firefox") > -1; //判断是否Firefox浏览器
+    var isSafari = userAgent.indexOf("safari") > -1
+      && userAgent.indexOf("chrome") == -1 && !isEdg && !isQQBrowser && !isBaidu && !isWeixin; //判断是否Safari浏览器
+    var isChrome = userAgent.indexOf("chrome") > -1
+      && userAgent.indexOf("safari") > -1 && !isEdg && !isQQBrowser && !isBaidu && !isWeixin; //判断Chrome浏览器
+
+    if (isIE) {
+      /(msie|firefox|opera|chrome|netscape|safari)\D+(\d[\d.]*)/.test(userAgent);
+      params.type = RegExp["$1"];
+      params.version = parseFloat(RegExp["$2"]);
+      // ie11处理
+      if (!params.type) {
+        params.type = 'msie';
+        params.version = 11;
+      }
+    }
+    if (isOpera) {
+      /(opera|opr)\D+(\d[\d.]*)/.test(userAgent);
+      params.type = 'opera';
+      params.version = parseFloat(RegExp["$2"]);
+    }
+    if (isSafari) {
+      /(version)\D+(\d[\d.]*)/.test(userAgent);
+      params.type = 'safari';
+      params.version = parseFloat(RegExp["$2"]);
+    }
+    if (isChrome) {
+      /(chrome)\D+(\d[\d.]*)/.test(userAgent);
+      params.type = RegExp["$1"];
+      params.version = parseFloat(RegExp["$2"]);
+    }
+    if (isFF) {
+      /(firefox)\D+(\d[\d.]*)/.test(userAgent);
+      params.type = RegExp["$1"];
+      params.version = parseFloat(RegExp["$2"]);
+    }
+    if (isEdg) {
+      /(edg)\D+(\d[\d.]*)/.test(userAgent);
+      params.type = RegExp["$1"];
+      params.version = parseFloat(RegExp["$2"]);
+    }
+    if (isQQBrowser) {
+      /(qqbrowser|mqqbrowser)\D+(\d[\d.\d]*)/.test(userAgent);
+      params.type = 'qq';
+      params.version = parseFloat(RegExp["$2"]);
+    }
+    if (isBaidu) {
+      /(bidubrowser|baiduboxapp)\D+(\d[\d.\d]*)/.test(userAgent);
+      params.type = 'baidu';
+      params.version = parseFloat(RegExp["$2"]);
+    }
+
+    return params;
+  }
+
+  // 浏览器拦截跳转处理
+  var browserInfo = getBrowserInfo();
+  var browserPath = '/public/polyfills-page/lower-browser-ie6.html?from=js&type=' + browserInfo.type + '&version=' + browserInfo.version;
+  var canSkip = false; // 是否能跳转
+  if (!browserInfo.isMobile) {
+    switch (browserInfo.type) {
+      // ie浏览器
+      case 'msie':
+        if (browserInfo.version < 11) {
+          canSkip = false;
+        }
+        break;
+      //
+      case 'edg':
+        if (browserInfo.version < 15) {
+          canSkip = true;
+        }
+        break;
+      // 谷歌浏览器
+      case 'chrome':
+        if (browserInfo.version < 51) {
+          canSkip = true;
+        }
+        break;
+      // safari浏览器
+      case 'safari':
+        if (browserInfo.version < 10) {
+          canSkip = true;
+        }
+        break;
+      // firefox浏览器
+      case 'firefox':
+        if (browserInfo.version < 54) {
+          canSkip = true;
+        }
+        break;
+      // 百度浏览器
+      case 'baidu':
+        canSkip = true;
+        break;
+      default:
+        break;
+    }
+  } else {
+    // TODO:移动端浏览器-先不做处理
+    switch (browserInfo.type) {
+      // 谷歌浏览器,有疑问，暂时不做跳转
+      case 'chrome':
+        if (browserInfo.version < 94) {
+
+        }
+        break;
+      // safari浏览器
+      case 'safari':
+        if (browserInfo.version < 10) {
+          canSkip = true;
+        }
+        break;
+      // qq浏览器
+      case 'qq':
+        if (browserInfo.version < 10.4) {
+          canSkip = true;
+        }
+        break;
+      // 百度浏览器
+      case 'baidu':
+        canSkip = true;
+        break;
+      default:
+        break;
+    }
+  }
+
+  var defaultConfig = {
+    ico: '/public/sso/page-config/favicon.png',
+    logo: '/public/sso/page-config/logged_in_logo.png',
+    background: '/public/sso/page-config/logged_in_bg.jpg'
+  };
+  var config = defaultConfig;
+  var pageName = '';
+
+  function getSelfConfig(key, cb) {
+    // var key = 'pc.self.page.config';
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/linkid/protected/api/dictconfig/get', true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset =UTF-8');
+    xhr.setRequestHeader('Csrf-Key', 'FzgxPikIetYDlXZM4lRG9taclVDa99lB');
+    xhr.setRequestHeader('Csrf-Value', '7964f321f00366a3a287a133dd307ed0');
+    xhr.send(JSON.stringify([key]));
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          var jsonObj = JSON.parse(xhr.responseText);
+          if (jsonObj.data && jsonObj.data.hasOwnProperty(key)) {
+            config = jsonObj.data[key];
+          }
+          cb();
+        }
+      }
+    };
+    xhr.onerror = function () {
+      cb();
+    };
+  }
+
+  window.casPageInit = function (pageNameParam) {
+    pageName = pageNameParam;
+  };
+
+  function _casPageInit() {
+    var url = document.getElementById('frontend-addr') && document.getElementById('frontend-addr').innerText;
+    var loadedJs = [];
+    var hasRun;
+    function nextLoad(jsPath) {
+      loadedJs.push(jsPath);
+
+      var hasRuntime;
+      var hasPolyfills;
+      for (var i = 0; i < loadedJs.length; i++) {
+        var path = loadedJs[i];
+        if (path.indexOf('runtime') !== -1) {
+          hasRuntime = true;
+        } else if (path.indexOf('polyfills') !== -1) {
+          hasPolyfills = true;
+        }
+      }
+
+      if (hasRuntime && hasPolyfills && !hasRun) {
+        hasRun = true;
+        for (var i = 0; i < jsCssConfig.js.length; i++) {
+          var jsPath = jsCssConfig.js[i];
+          if (jsPath.indexOf('main') !== -1) {
+            loadOneJS(jsPath);
+          }
+        }
+      }
+    }
+
+    function loadOneJS(jsPath) {
+      var script = document.createElement('script');
+      if (jsPath.indexOf('-es') !== -1) {
+        if (jsPath.indexOf('-es2015') !== -1) {
+          script.type = 'module';
+        } else {
+          script.noModule = true;
+          script.defer = true;
+        }
+      }
+      script.src = url + jsPath;
+      script.onload = function () {
+        nextLoad(jsPath);
+      };
+
+      document.body.appendChild(script);
+    }
+
+    var loadJsCss = function (config) {
+      jsCssConfig = config;
+      for (var i = 0; i < jsCssConfig.js.length; i++) {
+        var jsPath = jsCssConfig.js[i];
+        if (jsPath.indexOf('main') === -1) {
+          loadOneJS(jsPath);
+        }
+      }
+
+      for (var i = 0; i < jsCssConfig.css.length; i++) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = url + jsCssConfig.css[i];
+        link.onload = function () { };
+        link.onerror = function (e) {
+          console.log(e);
+        };
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(link);
+      }
+    };
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url + '/public/caspagehash.js?' + new Date().getTime();
+    script.onload = function () {
+      if (pageName === 'weixin') {
+        if (
+          document.getElementById('login-rule-type') &&
+          document.getElementById('login-rule-type').innerText === 'second'
+        ) {
+          pageName = 'gatewayweixin';
+        }
+        var pageJsCssConfig = window.SourceIdFrontend.pageJsCss[pageName];
+        loadJsCss(pageJsCssConfig);
+      } else {
+        var pageJsCssConfig = window.SourceIdFrontend.pageJsCss[pageName];
+        if (pageJsCssConfig) {
+          loadJsCss(pageJsCssConfig);
+        }
+      }
+    };
+    script.onerror = function (e) {
+      console.log(e);
+    };
+    document.body.appendChild(script);
+  }
+
+  getSelfConfig('pc.self.page.config', function () {
+    if (pageName === 'serviceerror') {
+      // if (document.querySelectorAll("[rel='icon']").length > 0) {
+      //   document.querySelectorAll("[rel='icon']")[0].href = config.ico;
+      // } else {
+      //   var head = document.head || document.getElementsByTagName('head')[0];
+      //   var icon = document.createElement('link');
+      //   icon.rel = 'icon';
+      //   icon.type = 'image/x-icon';
+      //   icon.href = config.ico;
+      //   head.appendChild(icon);
+
+
+      // }
+    } else if (pageName === 'logout' || pageName === 'propagatelogout' || pageName === 'error') {
+      if (document.getElementById('logout-header-logo')) {
+        document.getElementById('logout-header-logo').src = config.logo;
+      }
+      if (document.getElementById('logout-body-bg')) {
+        document.getElementById('logout-body-bg').style.backgroundImage = "url('" + config.background + "')";
+      }
+      // if (document.querySelectorAll("[rel='icon']").length > 0) {
+      //   document.querySelectorAll("[rel='icon']")[0].href = config.ico;
+      // } else {
+      //   var head = document.head || document.getElementsByTagName('head')[0];
+      //   var icon = document.createElement('link');
+      //   icon.rel = 'icon';
+      //   icon.type = 'image/x-icon';
+      //   icon.href = config.ico;
+      //   head.appendChild(icon);
+
+
+      // }
+    } else {
+      //在此判断是ie还是chrome，在判断 如果ie的情况下 开启了ie简洁页面，那么就进入ie简洁页面
+      if (IEVersion()!=-1 && IEVersion()!='edge') {
+        
+        //跳转
+        var reloadurl = function () {
+          //除了login，如果是其他业务全部拦截
+          if (pageName == 'login') {
+            localStorage.setItem('login-croypto',document.getElementById('login-croypto').innerText || '');
+            localStorage.setItem('login-page-flowkey',document.getElementById('login-page-flowkey').innerText || '');
+
+            var loginerrormsg = document.getElementById('login-error-msg');
+            if(loginerrormsg && loginerrormsg!=''){
+              localStorage.setItem('login-error-msg',document.getElementById('login-error-msg').innerText.trim() || '');
+              var loginerrorcode = document.getElementById('login-error-code');
+              if(loginerrorcode && loginerrorcode!=''){
+                localStorage.setItem('login-error-code',document.getElementById('login-error-code').innerText.trim() || '');
+              }else{
+                localStorage.setItem('login-error-code','');
+              }
+            }else{
+              localStorage.setItem('login-error-msg',"");
+            }
+
+            window.location.href = window.location.protocol +"//"+ window.location.host + "/public/ie-login-page/";
+          } else {
+            //错误拦截页面
+            window.location.href = window.location.protocol +"//"+ window.location.host + '/public/error-page/errorpage.html?statuscode=dont_use_ie';
+          }
+        }
+
+        //查询接口判断是否开启ie简洁页面 ，没开启就还是用原来的
+        getSelfConfig("IE-Simple-Mode", function () {
+            //config：true的时候 代表这个字典开启了ie简洁模式
+          if (config == true) {
+            reloadurl();
+          } else {
+            if(IEVersion()<=11){
+              //小于ie11就跳到提示升级ie页面
+              window.location.href = window.location.protocol +"//"+ window.location.host + '/public/polyfills-page/lower-browser-ie6.html';
+              return;
+            }
+            
+            _casPageInit();
+          }
+        });
+
+      } else {
+        _casPageInit();
+      }
+    }
+  });
+})();
+
+
+}
+).toString().slice(12, -2),"");

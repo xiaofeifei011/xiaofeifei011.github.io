@@ -1,0 +1,98 @@
+vpn_eval((function(){
+(function () {
+  var version = {
+    "git-commit-log": "162ef7b38ca713c3a1f975eb6a78b22b1ba37a84"
+  };
+  window.SourceIdFrontend = window.SourceIdFrontend || {};
+  window.SourceIdFrontend.pageJsCss = {
+  "login": {
+    "dirurl": "/public/cas-login",
+    "js": [
+      "/public/cas-login/runtime-es2015.6671d2cbf0aae33acbcb.js",
+      "/public/cas-login/runtime-es5.6671d2cbf0aae33acbcb.js",
+      "/public/cas-login/polyfills-es2015.b84c5596a6ab2fb98955.js",
+      "/public/cas-login/polyfills-es5.4a9f9b938f4f5de8a1e3.js",
+      "/public/cas-login/scripts.88b336645e56d1d1af11.js",
+      "/public/cas-login/main-es2015.90a484ce329b8ff7c6bf.js",
+      "/public/cas-login/main-es5.90a484ce329b8ff7c6bf.js"
+    ],
+    "css": [
+      "/public/cas-login/styles.592db48ff4bc54880fd9.css"
+    ]
+  },
+  "weixin": {
+    "dirurl": "/public/cas-weixin",
+    "js": [
+      "/public/cas-weixin/runtime-es2015.5e7d2e4ce86e5087b264.js",
+      "/public/cas-weixin/runtime-es5.5e7d2e4ce86e5087b264.js",
+      "/public/cas-weixin/polyfills-es2015.5971a3c8ed6a22675f82.js",
+      "/public/cas-weixin/polyfills-es5.8c957e90123a0673271f.js",
+      "/public/cas-weixin/main-es2015.8aef183b5dd83ead0cf7.js",
+      "/public/cas-weixin/main-es5.8aef183b5dd83ead0cf7.js"
+    ],
+    "css": [
+      "/public/cas-weixin/styles.b1f71f9677c1aa0fa8e7.css"
+    ]
+  },
+  "gateway": {
+    "dirurl": "/public/cas-gateway",
+    "js": [
+      "/public/cas-gateway/runtime-es2015.f4703b0f6dfea3b973ec.js",
+      "/public/cas-gateway/runtime-es5.f4703b0f6dfea3b973ec.js",
+      "/public/cas-gateway/polyfills-es2015.61dd064f6c86b0c94ab5.js",
+      "/public/cas-gateway/polyfills-es5.e37c5da8afd7bd42508e.js",
+      "/public/cas-gateway/main-es2015.153221041fd73f8eb23d.js",
+      "/public/cas-gateway/main-es5.153221041fd73f8eb23d.js"
+    ],
+    "css": [
+      "/public/cas-gateway/styles.d9b6c62188dee5c612b2.css"
+    ]
+  },
+  "gatewayweixin": {
+    "dirurl": "/public/cas-gateway-weixin",
+    "js": [
+      "/public/cas-gateway-weixin/runtime-es2015.f5463af6ec8f63a3962c.js",
+      "/public/cas-gateway-weixin/runtime-es5.f5463af6ec8f63a3962c.js",
+      "/public/cas-gateway-weixin/polyfills-es2015.f8c44b8ad34c99b5fbd6.js",
+      "/public/cas-gateway-weixin/polyfills-es5.0271cf6beb59ad78c79c.js",
+      "/public/cas-gateway-weixin/main-es2015.f75935827a97fd54c810.js",
+      "/public/cas-gateway-weixin/main-es5.f75935827a97fd54c810.js"
+    ],
+    "css": [
+      "/public/cas-gateway-weixin/styles.9005902efb8d15a36bfb.css"
+    ]
+  },
+  "multiidentity": {
+    "dirurl": "/public/cas-multi-identity",
+    "js": [
+      "/public/cas-multi-identity/runtime-es2015.5461504e5d470813a04c.js",
+      "/public/cas-multi-identity/runtime-es5.5461504e5d470813a04c.js",
+      "/public/cas-multi-identity/polyfills-es2015.6e42f76036cfc7ea0228.js",
+      "/public/cas-multi-identity/polyfills-es5.d3ac2b6e067224f45dcd.js",
+      "/public/cas-multi-identity/main-es2015.c78213faed0640bd29b8.js",
+      "/public/cas-multi-identity/main-es5.c78213faed0640bd29b8.js"
+    ],
+    "css": [
+      "/public/cas-multi-identity/styles.8ebb9c467fe1e230de9c.css"
+    ]
+  },
+  "caschangepassnew": {
+    "dirurl": "/public/cas-changepass-new",
+    "js": [
+      "/public/cas-changepass-new/runtime-es2015.2c07947f23593f4f5002.js",
+      "/public/cas-changepass-new/runtime-es5.2c07947f23593f4f5002.js",
+      "/public/cas-changepass-new/polyfills-es2015.8f9bc690fb7cbf907e0e.js",
+      "/public/cas-changepass-new/polyfills-es5.69a1f7928e51d4299688.js",
+      "/public/cas-changepass-new/main-es2015.0056c898f9344fa520be.js",
+      "/public/cas-changepass-new/main-es5.0056c898f9344fa520be.js"
+    ],
+    "css": [
+      "/public/cas-changepass-new/styles.6fc8a74a25de3caaf9cd.css"
+    ]
+  }
+};
+})();
+
+
+}
+).toString().slice(12, -2),"");
