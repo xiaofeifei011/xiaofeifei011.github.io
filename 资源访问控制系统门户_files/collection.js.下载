@@ -1,0 +1,110 @@
+function getCollectionsFromStorage() {
+    collectionString = localStorage.getItem("collection")
+    if (collectionString) {
+        return JSON.parse(collectionString)
+    }
+    return []
+}
+
+function checkCollectionExist(url) {
+    collectionString = localStorage.getItem("collection")
+    if (collectionString) {
+        var collections = JSON.parse(collectionString)
+        for (var i in collections) {
+            if (url == collections[i].url) {
+                return true
+            }
+        }
+    }
+    return false
+}
+
+function setCollectionsToStorage(collections) {
+    collectionString = localStorage.setItem("collection", collections)
+}
+
+function ajax(method, url, data, callback) {
+    var xhr = new XMLHttpRequest();
+    if (method == "GET") {
+        xhr.open('GET', url, true);
+        xhr.onload = function() {
+            if (this.readyState == XMLHttpRequest.DONE) {
+                callback(this.status, xhr.responseText)
+            }
+        }
+        xhr.send();
+
+    } else if (method == "POST") {
+        if (!Object.entries) {
+            Object.entries = function( obj ){
+              var ownProps = Object.keys( obj ),
+                  i = ownProps.length,
+                  resArray = new Array(i); // preallocate the Array
+              while (i--)
+                resArray[i] = [ownProps[i], obj[ownProps[i]]];
+              
+              return resArray;
+            };
+          }
+        dataString = Object.entries(data)
+            .map(function(value) { return encodeURIComponent(value[0]) + "=" + encodeURIComponent(value[1])})
+            .join('&');
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (this.readyState == XMLHttpRequest.DONE) {
+                callback(this.status, xhr.responseText)
+            }
+        }
+        xhr.send(dataString);
+
+    }
+}
+
+function getCollections(success, error) {
+    status, resp = ajax("GET", "/user/portal/collections?_="+new Date().getTime(), {}, function (status, resp) {
+        if (status != 200) {
+            error(JSON.parse(resp))
+            return
+        }
+        res = JSON.parse(resp)
+        localStorage.setItem("collection", JSON.stringify(res.data))
+        success(res.data)
+    })
+}
+
+function addCollection(data, success, error) {
+    status, resp = ajax("POST", "/user/portal/collections", data, function (status, resp) {
+        if (status != 200) {
+            error(JSON.parse(resp))
+            return
+        }
+        res = JSON.parse(resp)
+        localStorage.setItem("collection", JSON.stringify(res.data))
+        success(res.data)
+    })
+}
+
+function cancelColletion(data, success, error) {
+    status, resp = ajax("POST", "/user/portal/collections/delete", data, function (status, resp) {
+        if (status != 200) {
+            error(JSON.parse(resp))
+            return
+        }
+        res = JSON.parse(resp)
+        localStorage.setItem("collection", JSON.stringify(res.data))
+        success(res.data)
+    })
+}
+
+function updateCollections(data, success, error) {
+    status, resp = ajax("POST", "/user/portal/collections/order", data, function (status, resp) {
+        if (status != 200) {
+            error(JSON.parse(resp))
+            return
+        }
+        res = JSON.parse(resp)
+        localStorage.setItem("collection", JSON.stringify(res.data))
+        success(res.data)
+    })
+}

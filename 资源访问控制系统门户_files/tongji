@@ -1,0 +1,2 @@
+!(function(){window['speed_call'](new Date().getTime());}());
+!(function(){var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?d67baafd318097a18e70ee8d8d1de57a";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();}());
