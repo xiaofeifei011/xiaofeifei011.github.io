@@ -1,0 +1,525 @@
+vpn_eval((function(){
+//@ sourceURL=cxXscjzbdyIndex.js
+
+/*打印写在主修成绩单那的成绩单*/
+function scorePublicByOne(xhid, scheme, lx) {
+    var parameterMap = {};
+    parameterMap.ids = xhid.toString();
+    parameterMap.gsdygx = scheme.toString();
+    parameterMap.lx = lx.toString();
+    parameterMap.wjlx = "pdf";
+    $.post(_path + '/bysxxcx/xscjzbdy_dyList.html', parameterMap, function (filePath) {
+        if (filePath.indexOf("成功") > -1) {
+            //判断是否ie，打开方式不同
+            if (isIE()) {
+                checkIEhasPdfReader();
+                window.open(filePath.split("#")[0]);
+            } else {
+                window.open(filePath.split("#")[0]);
+            }
+        } else {
+            $.alert(filePath);
+        }
+    });
+}
+
+/**
+ * 通过id下载pdf
+ * @param id
+ * @param cloudflag
+ */
+function qrCodeDownById(id,cloudflag) {
+    var parameterMap = {};
+    parameterMap.id = id.toString();
+    parameterMap.cloudflag = cloudflag.toString();
+    window.location.href = _path + '/bysxxcx/xscjzbdy_cxDownLoadByIdIndex.html?id='+id.toString()+'&cloudflag'+cloudflag.toString();
+}
+
+/**
+ * keep
+ * @param ids
+ */
+function dyParamMap(ids) {
+    var dyMap = {
+        "jg_id": $("#jg_id").val(),
+        "njdm_id": $("#njdm_id").val(),
+        "zyh_id": $('#zyh_id').val(),
+        "bh_id": $('#bh_id').val(),
+        "xh": $('#xh_cx').val(),
+        "gsdygx": $("#gsdygx").val(),
+        "bmlbdm": $("#bmlbdm").val(),
+        ids: ids.toString(),
+        "sfby_dm": $('#sfby_dm').val(),
+        "sfzx": $("#sfzx_cx").val(),
+        "shzt": $("#shzt").val(),
+        "xwshzt": $("#xwshzt").val(),
+        "pyfxdm": $('#pyfxdm').val() ? $('#pyfxdm').val() : '',
+        "pyxmdm": $('#pyxmdm').val() ? $('#pyxmdm').val() : '',
+        "pydxdm": $('#pydxdm').val() ? $('#pydxdm').val() : ''
+    };
+    if ($.founded($("#dyrq").val())) {   //打印日期
+        dyMap["dyrq"] = $("#dyrq").val();
+    }
+    if ($.founded($("#bdykc").val())) {   //不打印课程
+        dyMap["bdykc"] = $("#bdykc").val();
+    }
+    if ($.founded($("#btmc").val())) {   //表头名称
+        dyMap["btmc"] = $("#btmc").val();
+    }
+    if ($.founded($("#bwnr").val())) {   //表尾信息
+        dyMap["bwnr"] = $("#bwnr").val();
+    }
+    if ($.founded($("#shr").val())) {   //审核人
+        dyMap["shr"] = $("#shr").val();
+    }
+    if ($.founded($("#dyfsdkc").val())) {   //打印分数段课程
+        dyMap["dyfsdkc"] = $("#dyfsdkc").val();
+    }
+    if ($.founded($("#zdyjgcj").val())) {   //只打印及格成绩
+        dyMap["zdyjgcj"] = $("#zdyjgcj").val();
+    }
+    if ($.founded($("#bbkxfwl").val())) {   //不包括学分为0的课程
+        dyMap["bbkxfwl"] = $("#bbkxfwl").val();
+    }
+    if ($.founded($("#a3dybylw").val())) {   //a3成绩单打印毕业论文    四川幼师专用
+        dyMap["a3dybylw"] = $("#a3dybylw").val();
+    }
+    if ($.founded($("#dyzgcj").val())) {   //打印最高成绩
+        dyMap["dyzgcj"] = $("#dyzgcj").val();
+    }
+    if ($.founded($("#bkalsftj").val())) {   //补考按60分统计
+        dyMap["bkalsftj"] = $("#bkalsftj").val();
+    }
+    if ($.founded($("#cxalsftj").val())) {   //重修按60分统计
+        dyMap["cxalsftj"] = $("#cxalsftj").val();
+    }
+    if ($.founded($("#bdycxbkcj").val())) {   //不打印重修补考成绩
+        dyMap["bdycxbkcj"] = $("#bdycxbkcj").val();
+    }
+    if ($.founded($("#bxsbylwtm").val())) {   //不显示毕业论文（设计）题目
+        dyMap["bxsbylwtm"] = $("#bxsbylwtm").val();
+    }
+    if ($.founded($("#xwrdkcxtj").val())) {   //校外课程认定
+        dyMap["xwrdkcxtj"] = $("#xwrdkcxtj").val();
+    }
+    if ($.founded($("#bkcxbj").val())) {   //补考重修标记
+        dyMap["bkcxbj"] = $("#bkcxbj").val();
+    }
+    if ($.founded($("#sfdysljcj").val())) {   //是否显示四六级成绩（西南大学）
+        dyMap["sfdysljcj"] = $("#sfdysljcj").val();
+    }
+    if ($.founded($("#sfdylnpjxfjd").val())) {   //是否打印平均学分绩点（西南大学）
+        dyMap["sfdylnpjxfjd"] = $("#sfdylnpjxfjd").val();
+    }
+    if ($.founded($("#sfxsfx").val())) {   //是否显示辅修
+        dyMap["sfxsfx"] = $("#sfxsfx").val();
+    }
+    if ($.founded($("#sfgz").val())) {   //是否显示辅修
+        dyMap["sfgz"] = $("#sfgz").val();
+    }
+    if ($.founded($("#kcxzjcbj").val())) {   //课程性质简称标记
+        dyMap["kcxzjcbj"] = $("#kcxzjcbj").val();
+    }
+    if ($.founded($("#sfdypjf").val())) {   //是否打印平均分
+        dyMap["sfdypjf"] = $("#sfdypjf").val();
+    }
+    if ($.founded($("#sfdypjjd").val())) {   //是否打印平均绩点
+        dyMap["sfdypjjd"] = $("#sfdypjjd").val();
+    }
+    
+    if($.founded($("#bdykclsxy").val())){//不打印课程(鹿山学院)
+    	 dyMap["BdykcmcDms"] = $("#bdykclsxy").val();
+    }
+    
+    if ($.founded($("#sfdyjd").val())) {   //是否打印绩点
+        dyMap["sfdyjd"] = $("#sfdyjd").val();
+    }
+    
+    if ($.founded($("#sfdyxftjl").val())) {   //是否打印学分统计栏
+        dyMap["sfdyxftjl"] = $("#sfdyxftjl").val();
+    }
+    
+    //开始学期和结束学期的时间段条件
+    if($.founded($("#startxq").val())){//开始学期
+   	 	 dyMap["startxq"] = $("#startxq").val();
+    }
+    if($.founded($("#endxq").val())){//结束学期
+      	 dyMap["endxq"] = $("#endxq").val();
+    }
+    
+    if ($.founded($("#bznr").val())) {   //备注内容
+        dyMap["bznr"] = $("#bznr").val();
+    }
+    
+    //课程性质打印条件
+    /*var kcxzDms = '';
+    $("input[name='kcxzDms']:checked").each(function(){
+        kcxzDms +=(kcxzDms==''?'':',')+$(this).val();
+    });
+    dyMap["kcxzDms"] = kcxzDms;*/
+    //不打印课程性质
+    var bdykcxzDms = '';
+    $("input[name='bdykcxzDms']:checked").each(function () {
+        bdykcxzDms += (bdykcxzDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["bdykcxzDms"] = bdykcxzDms;
+    
+    //需打印课程性质
+    var xdykcxzDms = '';
+    $("input[name='xdykcxzDms']:checked").each(function () {
+    	xdykcxzDms += (xdykcxzDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["xdykcxzDms"] = xdykcxzDms;
+    
+    //参与平均学分绩点统计课程性质
+    var cytjkcxzDms = '';
+    $("input[name='cytjkcxzDms']:checked").each(function () {
+        cytjkcxzDms += (cytjkcxzDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["cytjkcxzDms"] = cytjkcxzDms;
+
+    //参与平均学分绩点统计课程类别
+    var cytjkclbDms = '';
+    $("input[name='cytjkclbDms']:checked").each(function () {
+        cytjkclbDms += (cytjkclbDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["cytjkclbDms"] = cytjkclbDms;
+
+    //参与平均学分绩点统计课程归属
+    var cytjkcgsDms = '';
+    $("input[name='cytjkcgsDms']:checked").each(function () {
+        cytjkcgsDms += (cytjkcgsDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["cytjkcgsDms"] = cytjkcgsDms;
+
+
+    //不及格不打印课程性质打印条件
+    var bjgbdykcxzDms = '';
+    $("input[name='bjgbdykcxzDms']:checked").each(function () {
+        bjgbdykcxzDms += (bjgbdykcxzDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["bjgbdykcxzDms"] = bjgbdykcxzDms;
+    //选修不及格不打印课程性质打印条件
+    var bjgbdyxxkcxzDms = '';
+    $("input[name='bjgbdyxxkcxzDms']:checked").each(function () {
+        bjgbdyxxkcxzDms += (bjgbdyxxkcxzDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["bjgbdyxxkcxzDms"] = bjgbdyxxkcxzDms;
+    //不及格不打印课程类别打印条件
+    var bjgbdykclbDms = '';
+    $("input[name='bjgbdykclbDms']:checked").each(function () {
+    	bjgbdykclbDms += (bjgbdykclbDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["bjgbdykclbDms"] = bjgbdykclbDms;
+    //等级考试项目代码
+    var djksxmDms = '';
+    $("input[name='djksxmDms']:checked").each(function () {
+        djksxmDms += (djksxmDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["djksxmDms"] = djksxmDms;
+    
+    //其他成绩类型
+    var qtcjlxDms = '';
+    $("input[name='xdyqtcjlbDms']:checked").each(function () {
+    	qtcjlxDms += (qtcjlxDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["xdyqtcjlbDms"] = qtcjlxDms;
+    
+    //成绩备注代码
+    var cjbzmcDms = '';
+    $("input[name='cjbzmcDms']:checked").each(function () {
+        cjbzmcDms += (cjbzmcDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["cjbzmcDms"] = cjbzmcDms;
+    
+    //不打印成绩备注代码
+    var bdycjbzmcDms = '';
+    $("input[name='bdycjbzmcDms']:checked").each(function () {
+    	bdycjbzmcDms += (bdycjbzmcDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["bdycjbzmcDms"] = bdycjbzmcDms;
+    
+    //不打印最大成绩备注代码
+    var bdymaxcjbzmcDms = '';
+    $("input[name='bdymaxcjbzmcDms']:checked").each(function () {
+    	bdymaxcjbzmcDms += (bdymaxcjbzmcDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["bdymaxcjbzmcDms"] = bdymaxcjbzmcDms;
+    
+    //学期标题平均分平均绩点不统计课程性质
+    var xqbtkcxzDms = '';
+    $("input[name='xqbtpjfpjjdbtjkcxzDms']:checked").each(function () {
+    	xqbtkcxzDms += (xqbtkcxzDms == '' ? '' : ',') + $(this).val();
+    });
+    dyMap["xqbtkcxzDms"] = xqbtkcxzDms;
+
+    //打印设置项条件
+    var cjdySzxs = '';
+    $("input[name='cjdySzxs']:checked").each(function () {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + $(this).val();
+    });
+    //如果配置了等级考试项目的打印设置项,因为前面没有勾选项，所有需要手动把这一项的内容添加到打印设置项中，这样后台才能进行处理
+    if ($("input[name='djksxmDms']").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'xdydjksxm';
+    }
+    //其他成绩类型
+    if ($("input[name='xdyqtcjlbDms']").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'xdyqtcjlb';
+    }
+    
+    //如果配置了不及格成绩不打印的打印设置项,因为前面没有勾选项，所有需要手动把这一项的内容添加到打印设置项中，这样后台才能进行处理
+    if ($("input[name='bjgbdykcxzDms']").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'bjgbdykcxz';
+    }
+    //不打课程性质
+    if ($("input[name='bdykcxzDms']").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'bdykcxz';
+    }
+    
+    //需打课程性质
+    if ($("input[name='xdykcxzDms']:checked").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'xdykcxz';
+    }
+    
+    //平均学分绩点统计
+    if ($("input[name='cytjkcxzDms']").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'cytjkcxz';
+    }
+    if ($("input[name='cytjkclbDms']").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'cytjkclb';
+    }
+    if ($("input[name='cytjkcgsDms']").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'cytjkcgs';
+    }
+    //
+    if ($("input[name='cjbzmcDms']").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'xdycjbzmc';
+    }
+    
+    //不打印成绩备注名称
+    if ($("input[name='bdycjbzmcDms']:checked").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'bdycjbzmc';
+    }
+    
+    //不打印最大成绩备注名称
+    if ($("input[name='bdymaxcjbzmcDms']:checked").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'bdymaxcjbzmc';
+    }
+    
+    //如果配置了选修不及格成绩不打印的打印设置项,因为前面没有勾选项，所有需要手动把这一项的内容添加到打印设置项中，这样后台才能进行处理
+    if ($("input[name='bjgbdyxxkcxzDms']").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'bjgbdyxxkcxz';
+    }
+    //不及格不打印课程类别
+    if ($("input[name='bjgbdykclbDms']").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'bjgbdykclb';
+    }
+    
+    if($("#xxdm").val()=="10853"  || $("#xxdm").val()=="12713"){
+    	if($("#startxq").val()){
+    		cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'startxq';
+    	}
+    	if($("#endxq").val()){
+    		cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'endxq';
+    	}
+    }
+    
+    if ($("input[name='xqbtpjfpjjdbtjkcxzDms']").length > 0) {
+        cjdySzxs += (cjdySzxs == '' ? '' : ',') + 'xqbtpjfpjjdbtjkcxz';
+    }
+    dyMap["cjdySzxs"] = cjdySzxs;
+    
+    if ($.founded($("#jbr").val())) {   //经办人
+        dyMap["jbr"] = $("#jbr").val();
+    }
+    if ($.founded($("#lxdh").val())) {   //联系电话
+        dyMap["lxdh"] = $("#lxdh").val();
+    }
+    
+    return dyMap;
+};
+//总感觉可以简化
+var marginMap = {
+    showAllGradeControl: '',
+    retestMarkDoesNotDisplayControl: '',
+    reworkMarkDoesNotDisplayControl: '',
+    marginLeftInput: '',
+    marginTopInput: '',
+    marginRightInput: '',
+    marginBottomInput: '',
+    cxcyMark: '',
+    sfgz: '',
+    sztzMark: '',
+    notShowRetest: '',
+    producer: '',
+    whetherTheProfessionalShows: '',
+    whetherTheClassIsDisplayed: '',
+    whetherTheCreditsAreDisplayed: '',
+    whetherTheGradePointIsDisplayed: '',
+    whetherTheIDNumberIsDisplayed: '',
+    xnm: '',
+    xqm: '',
+    zcsj: ''
+}
+
+
+
+/**
+ * 打印单个学生成绩单
+ * @param xh_id
+ */
+function printSingleStu(xh_id, origin){
+    var url = _path + '/bysxxcx/xscjzbdy_dyXscjzbView.html';
+    $.showDialog(url, '打印设置', $.extend(true, {}, addConfig, {
+        width: "1000px",
+        modalName: "dyXscjzbModal",
+        buttons: {
+            success: {
+                label: "打印",
+                className: "btn-primary",
+                callback: function () {
+                    InputMarginMap();
+                    var val = $("#dyfsdkc").val();
+                    var reg = new RegExp("^(\\d|[1-9]\\d|100)-(\\d|[1-9]\\d|100)$");
+                    if (!reg.test(val) && $.founded(val)) {
+                        $.alert("请按照提示格式设置打印分数段");
+                        return false;
+                    }
+                    cjdySingle($("#gsdygx").val(), xh_id, origin);
+                    if (checkParamenter() == true) {
+                        $.closeModal("dyXscjzbModal");
+                    }
+                    return false;
+                }
+            },
+            cancel: {
+                label: "关 闭",
+                className: "btn-default"
+            }
+        }
+    }));
+}
+/**
+ * 打印单个学生成绩单
+ * @param gsdygx
+ * @param xh_id
+ * @returns {boolean}
+ */
+function cjdySingle(gsdygx, xh_id, origin) {
+    var ids = [xh_id];
+    var parameterMap = dyParamMap(ids);
+    parameterMap.lx = origin.toString();
+    parameterMap.gsdygx = gsdygx.toString();
+    $.post(_path + '/bysxxcx/xscjzbdy_cxXsCount.html', parameterMap, function (result) {
+        if (result.indexOf("可打印") == -1 || ids.length < 1) {
+            $.error("请选择需要打印的记录，且数量需要小于1000。", function () {
+            });
+        } else {
+            $.post(_path + '/bysxxcx/xscjzbdy_cxGswjlx.html', parameterMap, function (result) {
+                parameterMap["wjlx"] = result;
+                if (result == "xls" ) {
+                    if (!InputParamMap(parameterMap)) {
+                        return false;
+                    } else{
+
+                        $.buildForm("downForm", _path + "/bysxxcx/xscjzbdy_dyList.html", parameterMap).submit();
+                        $("#downForm").remove();
+                    }
+                } else {
+                    $("#progressbar").data("finished", false);
+                    if (!InputParamMap(parameterMap)) {
+                        return false;
+                    } else {
+                        $.post(_path + '/bysxxcx/xscjzbdy_dyList.html', parameterMap, function (filePath) {
+                            if (filePath.indexOf("成功") > -1) {
+                                //判断是否ie，打开方式不同
+                                //楼上也没说为什么打开方式有区别，目前发现用pdfjs打印会模糊
+                                window.open(filePath.split("#")[0]);
+                            } else {
+                                $.alert(filePath);
+                            }
+                        }, "json", {
+                            //显示提交进度的状态条元素
+                            progressElement: "#progressbar",
+                            //进度处理完成后进度归零延时时间；单位毫秒，默认2000
+                            progressDelay: 2000,
+                            //定时请求处理进度Ajax执行周期；单位毫秒，默认400
+                            progressPeriod: 400,
+                            //进度回调请求URL【该路径为通用路径，必须传参数key= 指定的值 】
+                            progressURL: _path + "/xtgl/progress_cxProgressStatus.html?key=score_print_processed"
+                        });
+                    }
+                }
+
+            });
+        }
+    }, 'json');
+    return true;
+};
+//检查参数
+function checkParamenter() {
+
+    if ("10248-zw-mrgsNewXQ" == $('#gsdygx').val() && $('#zcsj').val().length < 1) {
+        $.error("请选择注册时间");
+        return false;
+    } else {
+        return true;
+    }
+}
+//获取相关自定义配置信息
+function InputMarginMap() {
+    marginMap.showAllGradeControl = $('#showAllGradeControl').prop("checked") ? $("#showAllGradeControl").val() : "0";
+    marginMap.retestMarkDoesNotDisplayControl = $('#retestMarkDoesNotDisplayControl').prop("checked") ? $('#retestMarkDoesNotDisplayControl').val() : "1";
+    marginMap.reworkMarkDoesNotDisplayControl = $('#reworkMarkDoesNotDisplayControl').prop("checked") ? $('#reworkMarkDoesNotDisplayControl').val() : "1";
+    marginMap.marginLeftInput = $('#marginLeftInput').val() ? $('#marginLeftInput').val() : 0.16;
+    marginMap.marginTopInput = $('#marginTopInput').val() ? $('#marginTopInput').val() : 0.16;
+    marginMap.marginRightInput = $('#marginRightInput').val() ? $('#marginRightInput').val() : 0.16;
+    marginMap.marginBottomInput = $('#marginBottomInput').val() ? $('#marginBottomInput').val() : 0.16;
+    marginMap.cxcyMark = $('#cxcyMark').prop("checked") ? $('#cxcyMark').val() : '0';
+    marginMap.sfgz = $('#sfgz').prop("checked") ? $('#sfgz').val() : '0';
+    marginMap.sztzMark = $('#sztzMark').prop("checked") ? $('#sztzMark').val() : '0';
+    marginMap.notShowRetest = $('#notShowRetest').prop("checked") ? $('#notShowRetest').val() : '1';
+    marginMap.producer = $('#producer').val();
+    marginMap.whetherTheProfessionalShows = $('#whetherTheProfessionalShows').prop("checked") ? $('#whetherTheProfessionalShows').val() : '0';
+    marginMap.whetherTheClassIsDisplayed = $('#whetherTheClassIsDisplayed').prop("checked") ? $('#whetherTheClassIsDisplayed').val() : '0';
+    marginMap.whetherTheCreditsAreDisplayed = $('#whetherTheCreditsAreDisplayed').prop("checked") ? $('#whetherTheCreditsAreDisplayed').val() : '0';
+    marginMap.whetherTheGradePointIsDisplayed = $('#whetherTheGradePointIsDisplayed').prop("checked") ? $('#whetherTheGradePointIsDisplayed').val() : '0';
+    marginMap.whetherTheIDNumberIsDisplayed = $('#whetherTheIDNumberIsDisplayed').prop("checked") ? $('#whetherTheIDNumberIsDisplayed').val() : '0';
+    marginMap.whetherTheIDNumberIsDisplayed = $('#whetherTheIDNumberIsDisplayed').prop("checked") ? $('#whetherTheIDNumberIsDisplayed').val() : '0';
+    marginMap.xnm = $('#xnm').val();
+    marginMap.xqm = $('#xqm').val();
+    marginMap.gsdygx = $('#gsdygx').val();
+    marginMap.zcsj = $('#zcsj').val();
+
+}
+
+//将相关配置信息专业到参数列表里
+function InputParamMap(parameterMap) {
+    parameterMap.showAllGradeControl = marginMap.showAllGradeControl;
+    parameterMap.retestMarkDoesNotDisplayControl = marginMap.retestMarkDoesNotDisplayControl;
+    parameterMap.reworkMarkDoesNotDisplayControl = marginMap.reworkMarkDoesNotDisplayControl;
+    parameterMap.marginLeftInput = marginMap.marginLeftInput;
+    parameterMap.marginTopInput = marginMap.marginTopInput;
+    parameterMap.marginRightInput = marginMap.marginRightInput;
+    parameterMap.marginBottomInput = marginMap.marginBottomInput;
+    parameterMap.cxcyMark = marginMap.cxcyMark;
+    parameterMap.sztzMark = marginMap.sztzMark;
+    parameterMap.sfgz = marginMap.sfgz;
+    parameterMap.notShowRetest = marginMap.notShowRetest;
+    parameterMap.producer = marginMap.producer;
+    parameterMap.whetherTheProfessionalShows = marginMap.whetherTheProfessionalShows;
+    parameterMap.whetherTheClassIsDisplayed = marginMap.whetherTheClassIsDisplayed;
+    parameterMap.whetherTheCreditsAreDisplayed = marginMap.whetherTheCreditsAreDisplayed;
+    parameterMap.whetherTheGradePointIsDisplayed = marginMap.whetherTheGradePointIsDisplayed;
+    parameterMap.whetherTheIDNumberIsDisplayed = marginMap.whetherTheIDNumberIsDisplayed;
+    parameterMap.xnm = marginMap.xnm;
+    parameterMap.xqm = marginMap.xqm;
+    parameterMap.zcsj = marginMap.zcsj;
+    return checkParamenter(parameterMap)
+}
+function isIE() {  //判断是否ie浏览器，ie浏览器直接打开,非ie浏览器调用pdf.js插件
+    return /msie/.test(navigator.userAgent.toLowerCase());
+};
+
+}
+).toString().slice(12, -2),"");
